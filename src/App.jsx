@@ -1,16 +1,17 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
+import { useState } from 'react'
 import './App.css'
+import TaskDashboard from './components/TaskDashboard.tsx';
 
 function App() {
-  // const [count, setCount] = useState(0)
+  // get customer name from Auth0
+  const [customerName, setCustomerName] = useState("");
+  setCustomerName("Sara Asuen"); // temp
 
   return (
     <>
       <div>
         <h1>The JeniDub Task Management App</h1>
-        <p>Coming soon...</p>
+        <TaskDashboard customerName={customerName}/>
       </div>
     </>
   )
