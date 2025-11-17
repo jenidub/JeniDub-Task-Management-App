@@ -5,16 +5,20 @@ function TaskOverview(props: any) {
 
   return (
     <>
-        <h2>Welcome {username}! Here Is Your To Do List Overview for {Date.now()}</h2>
-        <h4>Here is a snapshot of your to do list today:</h4>
-          {statsList.map((stat: { statName: any; statValue: any; }) => {
-            return(
-              <TaskOverviewCard
-                statName={stat.statName}
-                statValue={stat.statValue}
-              />
-            )
-          })}
+      <h3>Welcome {username}!</h3>
+      <h3><em>Here is a snapshot of your to do list today:</em></h3>
+      <div style={{display: "flex", margin: "0 auto",}}>
+        {statsList.map((stat: { id: number; statName: string; statValue: number; }) => {
+          return(
+            <TaskOverviewCard
+              key={stat.id}
+              statName={stat.statName}
+              statValue={stat.statValue}
+            />
+          )
+        })}
+      </div>
+
     </>
   )
 }
