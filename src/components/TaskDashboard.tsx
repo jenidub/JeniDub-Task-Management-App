@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import TaskOverview from './TaskOverview';
 import TaskGridView from './TaskGridView';
-// import TaskListView from './TaskListView';
-import { Form } from "react-bootstrap";
+import TaskListView from './TaskListView';
+// import { Form } from "react-bootstrap";
 
 function TaskDashboard(props: any) {
   const { customerName } = props;
@@ -53,6 +53,7 @@ function TaskDashboard(props: any) {
         />
       </Form> */}
       <TaskGridView taskList={taskList} />
+      <TaskListView taskList={taskList} />
       {/* {isGrid ? <TaskGridView /> : <TaskListView />} */}
     </>
   )

@@ -11,6 +11,7 @@ function TaskGridView(props: any) {
           return (
               <TaskCard 
                 key={task.id}
+                id={task.id}
                 taskTitle={task.taskTitle}
                 taskDueDate={task.taskDueDate}
                 taskDescription={task.taskDescription}

@@ -1,19 +1,23 @@
-// import { useState } from 'react'
+import { useState } from 'react'
+import TaskListItem from './TaskListItem';
 
 function TaskListView(props: any) {
   const { taskList } = props;
+  const [isChecked, setIsChecked] = useState(false);
 
   return (
     <>
         {/* TODO: Add a border around each task listing */}
         {taskList.map((task: {id: number; taskTitle: string; taskDueDate: string; taskDescription: string; isTaskCompleted: boolean}) => {
           return (
-              <div key={task.id.toString()} style={{display: "flex", borderRadius: "3px",}}>
-                <h4>{task.id} | {task.taskTitle} | {task.taskDueDate}</h4>
-                <p><strong>{task.taskDescription}</strong></p>
-                <p>{task.isTaskCompleted ? "Task Completed" : "Task Not Yet Complete"}</p>
-                {/* TODO: Add ability to toggle completed/not completed */}
-              </div>
+            <TaskListItem 
+                key={task.id}
+                id={task.id}
+                taskTitle={task.taskTitle}
+                taskDueDate={task.taskDueDate}
+                taskDescription={task.taskDescription}
+                isTaskCompleted={task.isTaskCompleted} 
+            />
           )
         })}
     </>

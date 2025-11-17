@@ -2,7 +2,7 @@ import { useState } from 'react';
 import {Card, Form} from "react-bootstrap";
 
 function TaskCard(props: any) {
-  const {taskTitle, taskDueDate, taskDescription, isTaskCompleted} = props;
+  const {id, taskTitle, taskDueDate, taskDescription, isTaskCompleted} = props;
   const [isChecked, setIsChecked] = useState(isTaskCompleted);
 
   return (
@@ -15,7 +15,7 @@ function TaskCard(props: any) {
           <Form>
             <Form.Check // prettier-ignore
               type="checkbox"
-              id={`default-checkbox`}
+              id={`default-checkbox-${id}`}
               label={`Check When Completed:`}
               onClick={() => setIsChecked(!isChecked)}
             />
