@@ -1,27 +1,28 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import {Card, Form} from "react-bootstrap";
 
 function TaskCard(props: any) {
-  //deconstruct props like this
-  const {id, taskTitle, taskDueDate, taskDescription, isTaskCompleted} = props;
+  const {taskTitle, taskDueDate, taskDescription, isTaskCompleted} = props;
+  const [isChecked, setIsChecked] = useState(isTaskCompleted);
 
   return (
     <>
-      <div id={id.toString()}>
-        <h3>{taskTitle}</h3>
+      <Card style={{width: "33%", margin: "5px", border: "2px solid black",}}>
         <h4>{taskDueDate}</h4>
+        <h3>{taskTitle}</h3>
         <p>{taskDescription}</p>
         <div>
-          <p>Check when completed:</p>
-          <input
-            type="checkbox"
-            checked={true}
-            // onClick={() => setIsCompleted(!isCompleted)}
-          >
-            Completed?
-          </input>
-          <p><em>{isTaskCompleted ? "Task Completed" : "Task Not Completed"}</em></p>
+          <Form>
+            <Form.Check // prettier-ignore
+              type="checkbox"
+              id={`default-checkbox`}
+              label={`Check When Completed:`}
+              onClick={() => setIsChecked(!isChecked)}
+            />
+          </Form>
+          <p><em>{isChecked ? "Task Completed" : "Task Not Completed"}</em></p>
         </div>
-      </div>
+      </Card>
     </>
   )
 }

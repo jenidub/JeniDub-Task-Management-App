@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import TaskCard from './TaskCard';
 
 function TaskGridView(props: any) {
@@ -6,11 +5,12 @@ function TaskGridView(props: any) {
 
   return (
     <>
-        {/* TODO: Create a 3 card grid system for this view */}
+      {/* TODO: Create a 3 card grid system for this view */}
+      <div style={{display: "flex"}}>
         {taskList.map((task: {id: number; taskTitle: string; taskDueDate: string; taskDescription: string; isTaskCompleted: boolean}) => {
           return (
               <TaskCard 
-                id={task.id}
+                key={task.id}
                 taskTitle={task.taskTitle}
                 taskDueDate={task.taskDueDate}
                 taskDescription={task.taskDescription}
@@ -18,6 +18,7 @@ function TaskGridView(props: any) {
               />
           )
         })}  
+      </div>
     </>
   )
 }

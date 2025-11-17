@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import TaskOverview from './TaskOverview';
 import TaskGridView from './TaskGridView';
-import TaskListView from './TaskListView';
+// import TaskListView from './TaskListView';
+import { Form } from "react-bootstrap";
 
 function TaskDashboard(props: any) {
   const { customerName } = props;
@@ -10,18 +11,18 @@ function TaskDashboard(props: any) {
   const [totalTasks, setTotalTasks] = useState(0);
   const [tasksCompleted, setTasksCompleted] = useState(0);
   const [tasksRemaining, setTasksRemaining] = useState(0);
+  // const [isGrid, setIsGrid] = useState(true);
+
   // const [tasksCompletedPct, setTasksCompletedPct] = useState(0);
   // const [tasksRemainingPct, setTasksRemainingPct] = useState(0);
-
   // const [tasksDueToday, setTasksDueToday] = useState(0);
   // const [tasksDueThisWeek, setTasksDueThisWeek] = useState(0);
-  const [isGrid, setIsGrid] = useState(true);
 
   const taskList = [
-    {id: 1, taskTitle: "Finish the Task Management App", taskDueDate: "11-16-25", taskDescription: "Finish and Submit Coding Template FE Specialization Capstone 1", isTaskCompleted: false},
+    {id: 1, taskTitle: "Finish the Task Management App", taskDueDate: "11-16-25", taskDescription: "Finish and Submit CT FE Capstone 1", isTaskCompleted: false},
     {id: 2, taskTitle: "Review Project Requirements", taskDueDate: "11-17-25", taskDescription: "Go through all requirements and ensure nothing is missing.", isTaskCompleted: true},
     {id: 3, taskTitle: "Implement TaskCard Component", taskDueDate: "11-18-25", taskDescription: "Build and style the TaskCard component for displaying tasks.", isTaskCompleted: true},
-    {id: 4, taskTitle: "Test Dashboard Functionality", taskDueDate: "11-19-25", taskDescription: "Test the dashboard to ensure all tasks display and update correctly.", isTaskCompleted: false}
+    // {id: 4, taskTitle: "Test Dashboard Functionality", taskDueDate: "11-19-25", taskDescription: "Test the dashboard to ensure all tasks display and update correctly.", isTaskCompleted: false}
   ]
 
   useEffect(() => {
@@ -44,7 +45,14 @@ function TaskDashboard(props: any) {
         <a href="">Switch to List View</a>
       </div> */}
       <TaskOverview username={customerName} statsList={statsList} />
-      {/* <TaskGridView /> */}
+      <h2>TASK LIST</h2>
+      {/* <Form>
+        <Form.Switch // prettier-ignore
+          id="toggleGridList"
+          label="Toggle Grid/List View"
+        />
+      </Form> */}
+      <TaskGridView taskList={taskList} />
       {/* {isGrid ? <TaskGridView /> : <TaskListView />} */}
     </>
   )
