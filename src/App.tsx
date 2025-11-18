@@ -1,27 +1,45 @@
-import React from "react";
-import './App.css'
+import React, { useEffect } from "react";
+import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
+
+// import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import { useAuth0 } from "@auth0/auth0-react";
+
 import LoginPage from "./components/AuthLayer/LoginPage.tsx";
 import CallbackPage from "./components/AuthLayer/CallbackPage.tsx";
-import { useAuth0 } from "@auth0/auth0-react";
 import TaskDashboard from "./components/Dashboard/TaskDashboard.tsx";
 import ProfilePage from "./components/PageViews/ProfilePage.tsx";
 import AuthenticationGuard from "./components/AuthLayer/AuthenticationGuard.tsx";
+import AddTask from "./components/Task/AddTask.tsx";
+import TaskListContext from "./components/Context/TaskListContext.tsx";
+import { Task } from "./components/Context/TaskListContext.tsx";
 
 const App: React.FC = () => {
     const { isLoading } = useAuth0();
+    const [ taskList, setTaskList ] = useState<Task[]>([
+        {id: 1, taskTitle: "Finish the Task Management App", taskDueDate: "11-16-25", taskDescription: "Finish and Submit CT FE Capstone 1", isTaskCompleted: false},
+        {id: 2, taskTitle: "Review Project Requirements", taskDueDate: "11-17-25", taskDescription: "Go through all requirements and ensure nothing is missing.", isTaskCompleted: true},
+        {id: 3, taskTitle: "Implement TaskCard Component", taskDueDate: "11-18-25", taskDescription: "Build and style the TaskCard component for displaying tasks.", isTaskCompleted: true},
+        {id: 4, taskTitle: "Test Dashboard Functionality", taskDueDate: "11-19-25", taskDescription: "Test the dashboard to ensure all tasks display and update correctly.", isTaskCompleted: false}
+    ]);
 
-    if(isLoading) return (<div>Loading...</div>)
+    if (isLoading) return (<div>Loading...</div>)
 
     return (
-        <Routes>
-            <Route path="/" element={<LoginPage />} />
-            <Route path="/dashboard" element={<AuthenticationGuard component={TaskDashboard} />} />
-            <Route path="/profile" element={<AuthenticationGuard component={ProfilePage} />} />
-            <Route path="/callback" element={<CallbackPage />} />
-            {/* <Route path="/edit-task" element={<AuthenticationGuard component={TaskEdit} />} /> */}
-            {/* <Route path="/task-detail" element={<AuthenticationGuard component={TaskDetail} />} /> */}
-        </Routes>
+        <TaskListContext.Provider value={{ taskList, setTaskList }}>
+            <Routes>
+                <Route path="/" element={<LoginPage />} />
+                <Route path="/dashboard" element={<AuthenticationGuard component={TaskDashboard} />} />
+                <Route path="/profile" element={<AuthenticationGuard component={ProfilePage} />} />
+                <Route path="/callback" element={<CallbackPage />} />
+                <Route path="/addTask" element={<AddTask />} />
+
+                {/* <Route path="/edit-task" element={<AuthenticationGuard component={TaskEdit} />} /> */}
+                {/* <Route path="/task-detail" element={<AuthenticationGuard component={TaskDetail} />} /> */}
+            </Routes>
+        </TaskListContext.Provider>
     )
 }
 
