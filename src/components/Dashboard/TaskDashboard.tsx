@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Button } from "react-bootstrap";
+
+import PageLayout from '../PageViews/PageLayout';
 import TaskOverview from './TaskOverview';
-import TaskGridView from './TaskGridView';
-import TaskListView from './TaskListView';
+import TaskGridView from '../PageViews/TaskGridView';
+import TaskListView from '../PageViews/TaskListView';
 
 function TaskDashboard(props: any) {
   const { customerName } = props;
@@ -41,14 +43,13 @@ function TaskDashboard(props: any) {
 
   return (
     <>
-      {/* <div id="sidebar-user-options">
-        <a href="">Switch to List View</a>
-      </div> */}
-      <TaskOverview username={customerName} statsList={statsList} />
-      <h2 style={{margin: "20px 10px 10px 10px",}}>TASK LIST</h2>
-      <Button variant="Primary" id="gridView" size="lg" onClick={() => setIsGrid(true)} style={{margin: "10px 20px",}}>Click Here for Grid View</Button>
-      <Button variant="Secondary" id="listView" size="lg" onClick={() => setIsGrid(false)}>Click Here for List View</Button>
-      {isGrid ? <TaskGridView taskList={taskList} /> : <TaskListView taskList={taskList} />}
+        <PageLayout>
+            <TaskOverview username={customerName} statsList={statsList} />
+            <h2 style={{margin: "20px 10px 10px 10px",}}>TASK LIST</h2>
+            <Button variant="Primary" id="gridView" size="lg" onClick={() => setIsGrid(true)} style={{margin: "10px 20px",}}>Click Here for Grid View</Button>
+            <Button variant="Secondary" id="listView" size="lg" onClick={() => setIsGrid(false)}>Click Here for List View</Button>
+            {isGrid ? <TaskGridView taskList={taskList} /> : <TaskListView taskList={taskList} />}
+        </PageLayout>
     </>
   )
 }

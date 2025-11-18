@@ -1,4 +1,4 @@
-import TaskCard from './TaskCard';
+import TaskCard from '../TaskCard';
 
 function TaskGridView(props: any) {
   const { taskList } = props;
