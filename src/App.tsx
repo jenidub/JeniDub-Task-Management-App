@@ -15,6 +15,7 @@ import AuthenticationGuard from "./components/AuthLayer/AuthenticationGuard.tsx"
 import AddTask from "./components/Task/AddTask.tsx";
 import TaskListContext from "./components/Context/TaskListContext.tsx";
 import { Task } from "./components/Context/TaskListContext.tsx";
+import TaskDetail from "./components/Task/TaskDetail.tsx";
 
 function App() {
     const { isLoading } = useAuth0();
@@ -44,11 +45,10 @@ function App() {
                 <Route path="/" element={<LoginPage />} />
                 <Route path="/dashboard" element={<AuthenticationGuard component={TaskDashboard} />} />
                 <Route path="/profile" element={<AuthenticationGuard component={ProfilePage} />} />
+                <Route path="/addTask" element={<AuthenticationGuard component={AddTask} />} />
+                <Route path="/task-detail" element={<AuthenticationGuard component={TaskDetail} />} />
                 <Route path="/callback" element={<CallbackPage />} />
-                <Route path="/addTask" element={<AddTask />} />
-
                 {/* <Route path="/edit-task" element={<AuthenticationGuard component={TaskEdit} />} /> */}
-                {/* <Route path="/task-detail" element={<AuthenticationGuard component={TaskDetail} />} /> */}
             </Routes>
         </TaskListContext.Provider>
     )

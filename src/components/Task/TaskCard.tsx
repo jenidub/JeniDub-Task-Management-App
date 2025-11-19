@@ -13,14 +13,13 @@ function TaskCard(props: any) {
         <p>{taskDescription}</p>
         <div>
           <Form>
-            <Form.Check // prettier-ignore
+            <Form.Check
               type="checkbox"
               id={`default-checkbox-${id}`}
               label={`Check When Completed:`}
               onClick={() => setIsChecked(!isChecked)}
             />
           </Form>
-          <p><em>{isChecked ? "Task Completed" : "Task Not Completed"}</em></p>
         </div>
       </Card>
     </>
