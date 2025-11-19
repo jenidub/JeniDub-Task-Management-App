@@ -11,7 +11,6 @@ function TaskDashboard(props: any) {
     const { customerName } = props;
     const { taskList, setTaskList } = useContext(TaskListContext);
 
-    // const [taskList, setTaskList] = useState(INITIAL_TASK_LIST);
     const [totalTasks, setTotalTasks] = useState(0);
     const [tasksCompleted, setTasksCompleted] = useState(0);
     const [tasksRemaining, setTasksRemaining] = useState(0);
