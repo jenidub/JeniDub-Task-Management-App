@@ -1,19 +1,78 @@
-import { useState } from 'react';
-import {Card, Form} from "react-bootstrap";
+import { useState, useEffect, useContext } from "react";
+import { Card, Form, Button } from "react-bootstrap";
+import { Task } from "../Context/TaskListContext";
+import TaskListContext from "../Context/TaskListContext";
 
 function TaskDetail(props: any) {
-  const {id, taskTitle, taskDueDate, taskDescription, isTaskCompleted} = props;
+    const { taskList, setTaskList } = useContext(TaskListContext);
+    const {id, taskTitle, taskDueDate, taskDescription, isTaskCompleted} = props;
+    
+    const [currentTaskTitle, setCurrentTaskTitle] = useState(taskTitle);
+    const [currentTaskDueDate, setCurrentTaskDueDate] = useState(taskDueDate);
+    const [currentTaskDescription, setCurrentTaskDescription] = useState(taskDescription);
 
-  return (
-    <>
-      <Card style={{width: "33%", margin: "5px", border: "2px solid black",}}>
-        <h3>{taskTitle}</h3>
-        <h4>{taskDueDate}</h4>
-        <p>{taskDescription}</p>
-        <h4>{isTaskCompleted ? "Task completed" : "Task not yet completed"}</h4>
-      </Card>
-    </>
-  )
+    const handleUpdate = (e: any) => {
+        e.preventDefault();
+        console.log("initial task list: ", taskList);
+        const newTask: Task = {
+            id: id, 
+            taskTitle: currentTaskTitle, 
+            taskDueDate: currentTaskDueDate,
+            taskDescription: currentTaskDescription,
+            isTaskCompleted: isTaskCompleted
+        }
+        taskList[id-1] = newTask;
+        console.log("new task list:  ", taskList);
+        setTaskList(taskList);
+    }
+
+    return (
+        <div>
+            <Card style={{margin: "5px",}}>
+                <h3>{taskTitle}</h3>
+                <h4>{taskDueDate}</h4>
+                <p>{taskDescription}</p>
+                <h4>{isTaskCompleted ? "Task completed" : "Task not yet completed"}</h4>
+            </Card>
+            <br />
+            <h2>Use the form below to update any task information</h2>
+            <br />
+            <Form onSubmit={handleUpdate}>
+                <Form.Group className='' controlId=''>
+                    <Form.Label>Task Name: </Form.Label>
+                    <Form.Control 
+                        type='text' 
+                        placeholder='Name of the task'
+                        value={currentTaskTitle}
+                        onChange={(e) => setCurrentTaskTitle(e.target.value)} 
+                    />
+                    <Form.Text className=''>Enter the name for your task</Form.Text>
+                </Form.Group>
+                <Form.Group className='' controlId=''>
+                    <Form.Label>Task Due Date:  </Form.Label>
+                    <Form.Control
+                        type='text'
+                        placeholder='Due date for the task'
+                        value={currentTaskDueDate}
+                        onChange={(e) => setCurrentTaskDueDate(e.target.value)} 
+                    />
+                    <Form.Text className=''>Enter the due date for your task</Form.Text>
+                </Form.Group>
+                <Form.Group className='' controlId="">
+                    <Form.Label>Task Description:  </Form.Label>
+                    <Form.Control 
+                        type='text' 
+                        placeholder='Describe your task' 
+                        value={currentTaskDescription} 
+                        onChange={(e) => setCurrentTaskDescription(e.target.value)} 
+                    />
+                    <Form.Text className=''>Describe your task</Form.Text>
+                </Form.Group>
+                <br />
+                <Button variant="primary" type="submit">Submit</Button>
+            </Form>
+        </div>
+    )
 }
 
 export default TaskDetail;

@@ -14,9 +14,6 @@ function AddTask() {
 
     const updateTaskList = (e: any) => {
         e.preventDefault();
-        console.log(taskList);
-        console.log(taskId, taskTitle, taskDueDate, taskDescription, isTaskCompleted);
-
         const newTask: Task = {
             id: taskId, 
             taskTitle: taskTitle, 

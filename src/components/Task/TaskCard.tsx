@@ -1,29 +1,54 @@
 import { useState } from 'react';
-import {Card, Form} from "react-bootstrap";
+import { Col, Card, Nav, Form, Modal } from "react-bootstrap";
+import TaskDetail from './TaskDetail';
 
 function TaskCard(props: any) {
-  const {id, taskTitle, taskDueDate, taskDescription, isTaskCompleted} = props;
-  const [isChecked, setIsChecked] = useState(isTaskCompleted);
+    const {key, id, taskTitle, taskDueDate, taskDescription, isTaskCompleted} = props;
+    const [isChecked, setIsChecked] = useState(props.isTaskCompleted);
+    const [show, setShow] = useState(false);
+    const [fullscreen, setFullscreen] = useState(true);
 
-  return (
-    <>
-      <Card style={{width: "33%", margin: "5px", border: "2px solid black",}}>
-        <h4>{taskDueDate}</h4>
-        <h3>{taskTitle}</h3>
-        <p>{taskDescription}</p>
+    function handleShow() {
+        setFullscreen(true);
+        setShow(true);
+    }
+
+    return (
         <div>
-          <Form>
-            <Form.Check
-              type="checkbox"
-              id={`default-checkbox-${id}`}
-              label={`Check When Completed:`}
-              onClick={() => setIsChecked(!isChecked)}
-            />
-          </Form>
+            <Card style={{width: "90%", margin: "5px", border: "2px solid black",}}>
+                <p>{id}</p>
+                <p><em>{taskDueDate}</em></p>
+                <h3>{taskTitle}</h3>
+                <p>{taskDescription}</p>
+                <p><a onClick={handleShow}>Click Here to View/Edit Task</a></p>
+                <div>
+                    <Form>
+                        <Form.Check
+                        type="checkbox"
+                        id={`default-checkbox-${id}`}
+                        label={`Check When Completed:`}
+                        onClick={() => setIsChecked(!isChecked)}
+                        />
+                    </Form>
+                </div>
+            </Card>
+            <Modal show={show} fullscreen={true} onHide={() => setShow(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Task Detail Page</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    View and edit the details of the task below
+                    <TaskDetail 
+                        id={id} 
+                        taskTitle={taskTitle} 
+                        taskDueDate={taskDueDate}  
+                        taskDescription={taskDescription} 
+                        isTaskCompleted={isTaskCompleted}
+                    />
+                </Modal.Body>
+            </Modal>
         </div>
-      </Card>
-    </>
-  )
+    )
 }
 
 export default TaskCard;

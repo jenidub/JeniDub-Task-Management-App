@@ -23,10 +23,11 @@ function TaskDashboard(props: any) {
     // const [tasksDueThisWeek, setTasksDueThisWeek] = useState(0);
 
     useEffect(() => {
+        console.log(taskList);
         setTotalTasks(taskList.length);
         setTasksCompleted(taskList.filter(task => task.isTaskCompleted).length);
         setTasksRemaining(taskList.filter(task => !task.isTaskCompleted).length);
-    }, []);
+    }, [taskList]);
 
     const statsList = [
         {statName: "Total Tasks [Count]", statValue: totalTasks},
@@ -43,7 +44,7 @@ function TaskDashboard(props: any) {
                 <h2 style={{margin: "20px 10px 10px 10px",}}>TASK LIST</h2>
                 <Button variant="Primary" id="gridView" size="lg" onClick={() => setIsGrid(true)} style={{margin: "10px 20px",}}>Click Here for Grid View</Button>
                 <Button variant="Secondary" id="listView" size="lg" onClick={() => setIsGrid(false)}>Click Here for List View</Button>
-                {isGrid ? <TaskGridView taskList={taskList} /> : <TaskListView taskList={taskList} />}
+                {isGrid ? <TaskGridView /> : <TaskListView taskList={taskList} />}
             </PageLayout>
         </>
     )
