@@ -12,18 +12,23 @@ function TaskDetail(props: any) {
     const [currentTaskDescription, setCurrentTaskDescription] = useState(taskDescription);
 
     const handleUpdate = (e: any) => {
-        e.preventDefault();
-        console.log("initial task list: ", taskList);
-        const newTask: Task = {
-            id: id, 
-            taskTitle: currentTaskTitle, 
-            taskDueDate: currentTaskDueDate,
-            taskDescription: currentTaskDescription,
-            isTaskCompleted: isTaskCompleted
-        }
-        taskList[id-1] = newTask;
-        console.log("new task list:  ", taskList);
-        setTaskList(taskList);
+        // e.preventDefault();
+        const updatedTaskList: Task[] = taskList;
+
+        const selectedTask = taskList.filter(task => task.taskTitle == taskTitle)[0];
+        const selectedTaskIndex = taskList.findIndex(task => task.taskTitle == taskTitle);
+
+        console.log("selectedTask: ", selectedTask);
+        console.log("selectedTask index: ", selectedTaskIndex);
+
+        selectedTask.taskTitle = currentTaskTitle;
+        selectedTask.taskDueDate = currentTaskDueDate;
+        selectedTask.taskDescription = currentTaskDescription;
+
+        console.log("updated selectedtTask: ", selectedTask);
+        updatedTaskList[selectedTaskIndex] = selectedTask;
+        console.log("updated task list: ", updatedTaskList);
+        setTaskList(updatedTaskList);
     }
 
     return (

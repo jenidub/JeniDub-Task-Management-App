@@ -15,7 +15,6 @@ function AddTask() {
     const updateTaskList = (e: any) => {
         e.preventDefault();
         const newTask: Task = {
-            id: taskId, 
             taskTitle: taskTitle, 
             taskDueDate: taskDueDate,
             taskDescription: taskDescription,
@@ -30,7 +29,8 @@ function AddTask() {
     }
 
     return (
-        <PageLayout>
+        <>
+        {/* <PageLayout> */}
             <Form onSubmit={updateTaskList}>
                 <Form.Group className='' controlId=''>
                     <Form.Label>Task Name: </Form.Label>
@@ -50,7 +50,8 @@ function AddTask() {
                 <Button variant="primary" type="submit">Submit</Button>
             </Form>
             <Button variant="secondary" href='/dashboard'>Return to Dashboard</Button>
-        </PageLayout>
+        {/* // </PageLayout> */}
+        </>
     )
 }
 

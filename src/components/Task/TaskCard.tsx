@@ -1,8 +1,11 @@
-import { useState } from 'react';
-import { Col, Card, Nav, Form, Modal } from "react-bootstrap";
+import { useContext, useState } from 'react';
+import { Card, Form, Modal } from "react-bootstrap";
 import TaskDetail from './TaskDetail';
+import TaskListContext from '../Context/TaskListContext';
 
 function TaskCard(props: any) {
+    const { taskList, setTaskList } = useContext(TaskListContext);
+
     const {key, id, taskTitle, taskDueDate, taskDescription, isTaskCompleted} = props;
     const [isChecked, setIsChecked] = useState(props.isTaskCompleted);
     const [show, setShow] = useState(false);
@@ -13,14 +16,19 @@ function TaskCard(props: any) {
         setShow(true);
     }
 
+    function handleDelete() {
+        setTaskList(taskList.filter((task) => task.taskTitle != taskTitle));
+    }
+
     return (
         <div>
             <Card style={{width: "90%", margin: "5px", border: "2px solid black",}}>
-                <p>{id}</p>
+                {/* <p>{id}</p> */}
                 <p><em>{taskDueDate}</em></p>
                 <h3>{taskTitle}</h3>
                 <p>{taskDescription}</p>
                 <p><a onClick={handleShow}>Click Here to View/Edit Task</a></p>
+                <p><a onClick={handleDelete}>Click Here to Delete Task</a></p>
                 <div>
                     <Form>
                         <Form.Check
@@ -39,7 +47,6 @@ function TaskCard(props: any) {
                 <Modal.Body>
                     View and edit the details of the task below
                     <TaskDetail 
-                        id={id} 
                         taskTitle={taskTitle} 
                         taskDueDate={taskDueDate}  
                         taskDescription={taskDescription} 

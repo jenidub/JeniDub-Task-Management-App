@@ -18,11 +18,10 @@ function TaskGridView() {
         <Container>
             {taskListGrid.map((rowItems: Task[], rowIndex: number) => (
                 <Row key={rowIndex}>
-                    {rowItems.map((task: Task) => (
+                    {rowItems.map((task: Task, itemIndex: number) => (
                         <Col md={4}>
                             <TaskCard 
-                                key={task.id}
-                                id={task.id}
+                                key={itemIndex}
                                 taskTitle={task.taskTitle}
                                 taskDueDate={task.taskDueDate}
                                 taskDescription={task.taskDescription}
