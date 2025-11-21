@@ -5,18 +5,18 @@ import TaskListContext from "../Context/TaskListContext";
 
 function TaskDetail(props: any) {
     const { taskList, setTaskList } = useContext(TaskListContext);
-    const {id, taskTitle, taskDueDate, taskDescription, isTaskCompleted} = props;
+    const { handleClose, id, taskTitle, taskDueDate, taskDescription, isTaskCompleted} = props;
     
     const [currentTaskTitle, setCurrentTaskTitle] = useState(taskTitle);
     const [currentTaskDueDate, setCurrentTaskDueDate] = useState(taskDueDate);
     const [currentTaskDescription, setCurrentTaskDescription] = useState(taskDescription);
 
     const handleUpdate = (e: any) => {
-        // e.preventDefault();
+        e.preventDefault();
         const updatedTaskList: Task[] = taskList;
 
-        const selectedTask = taskList.filter(task => task.taskTitle == taskTitle)[0];
-        const selectedTaskIndex = taskList.findIndex(task => task.taskTitle == taskTitle);
+        const selectedTask: Task = taskList.filter((task: Task) => task.taskTitle === taskTitle)[0];
+        const selectedTaskIndex: number = taskList.findIndex((task: Task) => task.taskTitle === taskTitle);
 
         console.log("selectedTask: ", selectedTask);
         console.log("selectedTask index: ", selectedTaskIndex);
@@ -28,7 +28,7 @@ function TaskDetail(props: any) {
         console.log("updated selectedtTask: ", selectedTask);
         updatedTaskList[selectedTaskIndex] = selectedTask;
         console.log("updated task list: ", updatedTaskList);
-        setTaskList(updatedTaskList);
+        setTaskList([...updatedTaskList]);
     }
 
     return (
@@ -76,6 +76,7 @@ function TaskDetail(props: any) {
                 <br />
                 <Button variant="primary" type="submit">Submit</Button>
             </Form>
+            <Button variant="secondary" type="button" onClick={handleClose}>Close Window</Button>
         </div>
     )
 }

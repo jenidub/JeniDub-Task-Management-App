@@ -33,7 +33,7 @@ function TaskDashboard(props: any) {
     // const [tasksDueThisWeek, setTasksDueThisWeek] = useState(0);
 
     useEffect(() => {
-        console.log(taskList);
+        console.log("taskList:  ", taskList);
         setTotalTasks(taskList.length);
         setTasksCompleted(taskList.filter(task => task.isTaskCompleted).length);
         setTasksRemaining(taskList.filter(task => !task.isTaskCompleted).length);
@@ -52,7 +52,7 @@ function TaskDashboard(props: any) {
             <PageLayout>
                 <TaskOverview username={customerName} statsList={statsList} />
                 <h2 style={{margin: "40px 10px 20px 10px",}}>TASK LIST</h2>
-                <Button variant='primary' id='addItem' size='lg' onClick={() => {}}>
+                <Button variant='primary' id='addItem' size='lg' onClick={handleShow}>
                     Add New Task
                 </Button>
                 {/* <Button variant="Primary" id="gridView" size="lg" onClick={() => setIsGrid(true)} style={{margin: "10px 20px",}}>Click Here for Grid View</Button> */}
@@ -60,9 +60,6 @@ function TaskDashboard(props: any) {
                 {/* {isGrid ? <TaskGridView /> : <TaskListView taskList={taskList} />} */}
                 <TaskGridView />
                 <Modal show={show} fullscreen={true} onHide={() => setShow(false)}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Task Detail Page</Modal.Title>
-                    </Modal.Header>
                     <Modal.Body>
                         <AddTask />
                     </Modal.Body>

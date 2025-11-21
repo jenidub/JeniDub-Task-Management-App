@@ -12,12 +12,15 @@ function TaskCard(props: any) {
     const [fullscreen, setFullscreen] = useState(true);
 
     function handleShow() {
-        setFullscreen(true);
         setShow(true);
     }
 
     function handleDelete() {
         setTaskList(taskList.filter((task) => task.taskTitle != taskTitle));
+    }
+
+    function handleClose() {
+        setShow(false);
     }
 
     return (
@@ -46,7 +49,10 @@ function TaskCard(props: any) {
                 </Modal.Header>
                 <Modal.Body>
                     View and edit the details of the task below
-                    <TaskDetail 
+                    <TaskDetail
+                        taskList={taskList}
+                        setTaskList={setTaskList}
+                        handleClose={handleClose}
                         taskTitle={taskTitle} 
                         taskDueDate={taskDueDate}  
                         taskDescription={taskDescription} 
