@@ -1,22 +1,32 @@
-import { Nav, Navbar } from "react-bootstrap";
+import { Container, Nav, Navbar } from "react-bootstrap";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const NavBar: React.FC = () => {
     const { isAuthenticated } = useAuth0();
 
     return (
-        <Navbar>
-            <Nav>
-                <Nav.Link href="/dashboard">Home | </Nav.Link>
-                {isAuthenticated &&
-                    <>
-                        <Nav.Link href="/addTask">Add a Task | </Nav.Link>
-                        <Nav.Link href="/viewTask">Task View | </Nav.Link>
-                        <Nav.Link href="/editTask">Edit To Do List | </Nav.Link>
-                        <Nav.Link href="/profile">Profile </Nav.Link>
-                    </>
-                }
-            </Nav>
+        <Navbar bg="dark" data-bs-theme="dark" fixed="top" style={{fontSize: "1.25em",}}>
+            <Container>
+                <Navbar.Brand style={{fontSize: "1.3em", textTransform: "uppercase",}}>
+                    <img
+                        alt=""
+                        src="https://cdn-icons-png.flaticon.com/512/6286/6286665.png"
+                        width="40"
+                        height="40"
+                        style={{margin: "0px 20px 0px 0px"}}
+                        className="d-inline-block align-top"
+                    />
+                    JeniDub Task Manager
+                </Navbar.Brand>
+                <Nav>
+                    {isAuthenticated &&
+                        <>
+                            <Nav.Link href="/dashboard" style={{fontSize: "1.25em",}}>Dashboard</Nav.Link>
+                            <Nav.Link href="/profile" style={{fontSize: "1.25em",}}>Profile </Nav.Link>
+                        </>
+                    }
+                </Nav>
+            </Container>
         </Navbar>
     )
 }

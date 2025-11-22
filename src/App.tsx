@@ -1,7 +1,7 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -10,11 +10,11 @@ import CallbackPage from "./components/AuthLayer/CallbackPage.tsx";
 import TaskDashboard from "./components/Dashboard/TaskDashboard.tsx";
 import ProfilePage from "./components/PageViews/ProfilePage.tsx";
 import AuthenticationGuard from "./components/AuthLayer/AuthenticationGuard.tsx";
-import AddTask from "./components/Task/AddTask.tsx";
 import TaskListContext from "./components/Context/TaskListContext.tsx";
 
 function App() {
     const { isLoading } = useAuth0();
+
     const [ taskList, setTaskList ] = useState(() => {
         const savedTasks = localStorage.getItem('taskList');
         if (savedTasks) {
@@ -34,11 +34,10 @@ function App() {
                 <Route path="/" element={<LoginPage />} />
                 <Route path="/dashboard" element={<AuthenticationGuard component={TaskDashboard} />} />
                 <Route path="/profile" element={<AuthenticationGuard component={ProfilePage} />} />
-                <Route path="/addTask" element={<AuthenticationGuard component={AddTask} />} />
                 <Route path="/callback" element={<CallbackPage />} />
             </Routes>
         </TaskListContext.Provider>
     )
 }
 
-export default App
+export default App;

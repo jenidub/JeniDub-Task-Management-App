@@ -17,17 +17,11 @@ function TaskDetail(props: any) {
 
         const selectedTask: Task = taskList.filter((task: Task) => task.taskTitle === taskTitle)[0];
         const selectedTaskIndex: number = taskList.findIndex((task: Task) => task.taskTitle === taskTitle);
-
-        console.log("selectedTask: ", selectedTask);
-        console.log("selectedTask index: ", selectedTaskIndex);
-
         selectedTask.taskTitle = currentTaskTitle;
         selectedTask.taskDueDate = currentTaskDueDate;
         selectedTask.taskDescription = currentTaskDescription;
-
-        console.log("updated selectedtTask: ", selectedTask);
         updatedTaskList[selectedTaskIndex] = selectedTask;
-        console.log("updated task list: ", updatedTaskList);
+
         setTaskList([...updatedTaskList]);
     }
 

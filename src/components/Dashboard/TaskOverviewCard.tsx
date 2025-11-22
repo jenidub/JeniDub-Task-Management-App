@@ -1,22 +1,29 @@
-// import { useState } from 'react'
+import { Card } from "react-bootstrap";
 
 function TaskOverviewCard(props: any) {
-  //deconstruct props like this
-  const {id, statName, statValue} = props;
+    const {id, statName, statValue} = props;
 
-  return (
-    <>
-      <div key={id} style={{border: "1px dashed red", margin: "3px", width: "33%"}}>
-        <img 
-          src="https://static.vecteezy.com/system/resources/previews/025/638/355/non_2x/simple-task-icon-the-icon-can-be-used-for-websites-print-templates-presentation-templates-illustrations-etc-free-vector.jpg"
-          alt="Task List Icon"
-          style={{width: "20%", margin: "0 auto",}}
-        />
-        <h1 style={{margin: "0 auto",}}><strong>{statValue}</strong></h1>
-        <p><em>{statName}</em></p>
-      </div>
-    </>
-  )
+    const icons = [
+        "https://media.istockphoto.com/id/936289790/vector/notepad-edit-document-with-pencil-icon-vector-illustration-business-concept-note-edit.jpg?s=612x612&w=0&k=20&c=jsO6SRwnffVJI5lurLjJbBClEwNxVd9ZeMa6uZSNzfI=",
+        "https://media.istockphoto.com/id/936289790/vector/notepad-edit-document-with-pencil-icon-vector-illustration-business-concept-note-edit.jpg?s=612x612&w=0&k=20&c=jsO6SRwnffVJI5lurLjJbBClEwNxVd9ZeMa6uZSNzfI=",
+        "https://media.istockphoto.com/id/936289790/vector/notepad-edit-document-with-pencil-icon-vector-illustration-business-concept-note-edit.jpg?s=612x612&w=0&k=20&c=jsO6SRwnffVJI5lurLjJbBClEwNxVd9ZeMa6uZSNzfI=",
+    ];
+
+    return (
+        <>
+        <Card key={id} className="text-center" style={{margin: "5px", width: "100%",}}>
+            <Card.Body>
+                <img 
+                    src={icons[id]}
+                    alt="Task List Icon"
+                    style={{width: "100px", height: "100px", margin: "0 auto"}}
+                />
+                <h1 style={{color: "#35D7F6", fontSize: "3em", fontWeight: "800"}}><strong>{statValue}</strong></h1>
+                <p><em>{statName}</em></p>
+            </Card.Body>
+        </Card>
+        </>
+    )
 }
 
 export default TaskOverviewCard;
