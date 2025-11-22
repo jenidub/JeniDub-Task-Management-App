@@ -11,7 +11,7 @@ const LoginButton: React.FC = () => {
         });
     };
 
-    if(!isAuthenticated) return (<Button onClick={handleLogin}>Log In </Button>);
+    if(!isAuthenticated) return (<Button style={{backgroundColor: "black", color: "white", fontSize: "2em", fontWeight: "800px", textTransform: "uppercase"}} onClick={handleLogin}>Log In </Button>);
     return null;
 }
 

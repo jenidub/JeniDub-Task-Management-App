@@ -14,9 +14,9 @@ const PageLayout: React.FC<PageLayoutProps> = ({ children }) => {
             </Col>
             {/* <h1 style={{border: "3px solid black",}}>The JeniDub Task Management App</h1> */}
             {children}
-            <footer style={{margin: "25px",}}>
+            {/* <footer style={{margin: "25px",}}>
                 <NavBarButtons />
-            </footer>
+            </footer> */}
         </Container>
     )
 }

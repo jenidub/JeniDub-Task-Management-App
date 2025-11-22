@@ -7,18 +7,22 @@ const NavBarButtons: React.FC = () => {
     const {isAuthenticated} = useAuth0();
 
     return(
-        <Container>
-            {!isAuthenticated && (
-                <>
-                    <LoginButton />
-                </>
-            )}
-            {isAuthenticated && (
-                <>
-                    <LogoutButton />
-                </>
-            )}
-        </Container>
+        <div
+            className="d-flex justify-content-center align-items-center"
+        >
+            <Container style={{textAlign: "center",}}>
+                {!isAuthenticated && (
+                    <>
+                        <LoginButton />
+                    </>
+                )}
+                {isAuthenticated && (
+                    <>
+                        <LogoutButton />
+                    </>
+                )}
+            </Container>
+        </div>
     )
 };
 
