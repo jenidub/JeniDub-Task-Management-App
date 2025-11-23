@@ -63,11 +63,7 @@ function TaskCard(props: any) {
             </Card>
 
             <Modal show={show} fullscreen={true} onHide={() => setShow(false)}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Task Detail Page</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    View and edit the details of the task below
+                <Modal.Body style={{marginTop: "90px",}}>
                     <TaskDetail
                         taskList={taskList}
                         setTaskList={setTaskList}

@@ -30,27 +30,28 @@ function AddTask() {
 
     return (
         <>
-        {/* <PageLayout> */}
-            <Form onSubmit={updateTaskList}>
-                <Form.Group className='' controlId=''>
-                    <Form.Label>Task Name: </Form.Label>
-                    <Form.Control type='text' placeholder='Name of the task' value={taskTitle} onChange={(e) => setTaskTitle(e.target.value)} />
-                    <Form.Text className=''>Enter the name for your task</Form.Text>
-                </Form.Group>
-                <Form.Group className='' controlId=''>
-                    <Form.Label>Task Due Date:  </Form.Label>
-                    <Form.Control type='text' placeholder='Due date for the task' value={taskDueDate} onChange={(e) => setTaskDueDate(e.target.value)} />
-                    <Form.Text className=''>Enter the due date for your task</Form.Text>
-                </Form.Group>
-                <Form.Group className='' controlId="">
-                    <Form.Label>Task Description:  </Form.Label>
-                    <Form.Control type='text' placeholder='Describe your task' value={taskDescription} onChange={(e) => setTaskDescription(e.target.value)} />
-                    <Form.Text className=''>Describe your task</Form.Text>
-                </Form.Group>
-                <Button variant="primary" type="submit">Submit</Button>
-            </Form>
-            <Button variant="secondary" href='/dashboard'>Return to Dashboard</Button>
-        {/* // </PageLayout> */}
+            <PageLayout>
+                <h2 style={{textTransform: "uppercase", marginTop: "90px",}}><strong>Add A Task</strong></h2>
+                <Form onSubmit={updateTaskList}>
+                    <Form.Group className='my-2' controlId=''>
+                        <Form.Label>Task Name: </Form.Label>
+                        <Form.Control type='text' placeholder='Name of the task' value={taskTitle} onChange={(e) => setTaskTitle(e.target.value)} />
+                        <Form.Text className=''>Enter the name for your task</Form.Text>
+                    </Form.Group>
+                    <Form.Group className='my-2' controlId=''>
+                        <Form.Label>Task Due Date:  </Form.Label>
+                        <Form.Control type='text' placeholder='Due date for the task' value={taskDueDate} onChange={(e) => setTaskDueDate(e.target.value)} />
+                        <Form.Text className=''>Enter the due date for your task</Form.Text>
+                    </Form.Group>
+                    <Form.Group className='my-2' controlId="">
+                        <Form.Label>Task Description:  </Form.Label>
+                        <Form.Control type='text' placeholder='Describe your task' value={taskDescription} onChange={(e) => setTaskDescription(e.target.value)} />
+                        <Form.Text className=''>Describe your task</Form.Text>
+                    </Form.Group>
+                    <Button variant="primary" type="submit" className='my-2'>Submit</Button>
+                </Form>
+                <Button variant="secondary" href='/dashboard' className='my-2'>Return to Dashboard</Button>
+            </PageLayout>
         </>
     )
 }

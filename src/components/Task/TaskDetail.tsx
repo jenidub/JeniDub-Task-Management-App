@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { Card, Form, Button } from "react-bootstrap";
-import { Task } from "../Context/TaskListContext";
-import TaskListContext from "../Context/TaskListContext";
+import TaskListContext, { Task } from "../Context/TaskListContext";
+import PageLayout from "../PageViews/PageLayout"; 
 
 function TaskDetail(props: any) {
     const { taskList, setTaskList } = useContext(TaskListContext);
@@ -26,18 +26,18 @@ function TaskDetail(props: any) {
     }
 
     return (
-        <div>
-            <Card style={{margin: "5px",}}>
-                <h3>{taskTitle}</h3>
-                <h4>{taskDueDate}</h4>
-                <p>{taskDescription}</p>
-                <h4>{isTaskCompleted ? "Task completed" : "Task not yet completed"}</h4>
+        <PageLayout>
+            <h4 className='mb-4' style={{textTransform: "uppercase", textAlign: "center",}}>Selected Task</h4>
+            <Card className='mt-2 mb-4' style={{margin: "5px", textAlign: "center", padding: "10px"}}>
+                <p style={{fontSize: "1.25em", fontWeight: "800"}}>{taskTitle}</p>
+                <p style={{fontSize: "1.1em"}}>{taskDueDate}</p>
+                <p style={{fontSize: "1.1em"}}>{taskDescription}</p>
+                <p style={{fontSize: "1.1em"}}>{isTaskCompleted ? "Task completed" : "Task not yet completed"}</p>
             </Card>
-            <br />
-            <h2>Use the form below to update any task information</h2>
-            <br />
-            <Form onSubmit={handleUpdate}>
-                <Form.Group className='' controlId=''>
+            <h5 className='my-2' style={{}}>Edit the Selected Task</h5>
+            <Form className='my-2' onSubmit={handleUpdate}>
+                <Form.Text>Use the form below to edit the task information. Once you are done, click the Submit button to save and return to the Dashboard</Form.Text>
+                <Form.Group className='my-3' controlId=''>
                     <Form.Label>Task Name: </Form.Label>
                     <Form.Control 
                         type='text' 
@@ -45,9 +45,9 @@ function TaskDetail(props: any) {
                         value={currentTaskTitle}
                         onChange={(e) => setCurrentTaskTitle(e.target.value)} 
                     />
-                    <Form.Text className=''>Enter the name for your task</Form.Text>
+                    <Form.Text className=''>Edit the name for your task</Form.Text>
                 </Form.Group>
-                <Form.Group className='' controlId=''>
+                <Form.Group className='my-3' controlId=''>
                     <Form.Label>Task Due Date:  </Form.Label>
                     <Form.Control
                         type='text'
@@ -55,9 +55,9 @@ function TaskDetail(props: any) {
                         value={currentTaskDueDate}
                         onChange={(e) => setCurrentTaskDueDate(e.target.value)} 
                     />
-                    <Form.Text className=''>Enter the due date for your task</Form.Text>
+                    <Form.Text className=''>Edit the due date for your task</Form.Text>
                 </Form.Group>
-                <Form.Group className='' controlId="">
+                <Form.Group className='my-3' controlId="">
                     <Form.Label>Task Description:  </Form.Label>
                     <Form.Control 
                         type='text' 
@@ -65,13 +65,12 @@ function TaskDetail(props: any) {
                         value={currentTaskDescription} 
                         onChange={(e) => setCurrentTaskDescription(e.target.value)} 
                     />
-                    <Form.Text className=''>Describe your task</Form.Text>
+                    <Form.Text className=''>Edit your task</Form.Text>
                 </Form.Group>
-                <br />
-                <Button variant="primary" type="submit">Submit</Button>
+                <Button className='mt-3' variant="primary" type="submit">Submit</Button>
             </Form>
             <Button variant="secondary" type="button" onClick={handleClose}>Close Window</Button>
-        </div>
+        </PageLayout>
     )
 }
 
