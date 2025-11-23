@@ -1,9 +1,17 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import PageLayout from "./PageLayout";
-import { Col } from "react-bootstrap";
+import { Container, Col, Row } from "react-bootstrap";
+import { UserInfoTypes } from "../AuthLayer/UserInfoTypes";
 
 const ProfilePage: React.FC = () => {
     const {user, isAuthenticated, getAccessTokenSilently} = useAuth0();
+
+    const userInfo: UserInfoTypes = {
+        customerName: user?.name,
+        username: user?.nickname,
+        email: user?.email,
+        profilePic: user?.picture,
+    }
 
     if (!isAuthenticated) {
         return <div>Not Authenticated - Please try again</div>
@@ -14,16 +22,29 @@ const ProfilePage: React.FC = () => {
     }
 
     getAccessTokenSilently().then(token => console.log('token: ', token))
+    console.log(user);
 
     return (
         <PageLayout>
-            <h2>Profile Page for {user.name}</h2>
-            <Col>
-                {user?.picture && <img src={user.picture} alt={`user.name Profile Picture`} />}
-                <div>
-                    {Object.keys(user).map((objKey, index) => <p key={index}><b>{objKey}</b>: {user[objKey]}</p>)}
-                </div>
-            </Col>
+            <div style={{marginTop: "90px", textAlign: "center"}}>
+                <Container>
+                    <Row>
+                        <h2 style={{textAlign: "center",}}>
+                            Profile Page  { userInfo.customerName ? `for ${userInfo.customerName}`: "" }
+                        </h2>
+                    </Row>
+                </Container>
+                <Container>
+                    <Row style={{display: "flex", marginTop: "30px"}}>
+                        {user?.picture && <img src={userInfo.profilePic} alt={`user.name Profile Picture`} style={{width: "200px", margin: "0 auto"}}/>}
+                        <div style={{marginTop: "20px"}}>
+                            <p>Name: {userInfo.customerName}</p>
+                            <p>Username: {userInfo.username}</p>
+                            <p>Email: {userInfo.email}</p>
+                        </div>
+                    </Row>
+                </Container>
+            </div>
         </PageLayout>
     )
 }
