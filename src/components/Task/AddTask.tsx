@@ -14,7 +14,6 @@ function AddTask() {
             isTaskCompleted: false
     });
 
-    const [taskId, setTaskId] = useState(taskList.length + 1);
     const [errors, setErrors] = useState<Record<string, string>>({});
 
     const validateData = (formData: TaskForm): Record<string, string> => {
