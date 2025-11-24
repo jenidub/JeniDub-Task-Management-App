@@ -116,5 +116,5 @@ Plans for future development:
 -   Toggle Grid/List views
 
 ---
-*** Submission for the CT Software Engineering Certificate Program ***
-*** README created with the assistance of Claude AI and Stackedit.io ***
+***Submission for the CT Software Engineering Certificate Program***
+***README created with the assistance of Claude AI and Stackedit.io***
