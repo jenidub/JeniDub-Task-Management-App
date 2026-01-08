@@ -17,8 +17,6 @@ function App() {
 
     const [ taskList, setTaskList ] = useState(() => {
         const savedTasks = localStorage.getItem('taskList');
-        console.log(savedTasks);
-
         if (savedTasks && savedTasks !== "undefined" && savedTasks !== "null") {
             return JSON.parse(savedTasks)
         }
